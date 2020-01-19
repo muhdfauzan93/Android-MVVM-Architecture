@@ -19,5 +19,9 @@ class MainActivity : AppCompatActivity() {
         btn_rest_api.setOnClickListener {
             startActivity(Intent(this, RestActivity::class.java))
         }
+
+        btn_room_db.setOnClickListener {
+            startActivity(Intent(this, RoomActivity::class.java))
+        }
     }
 }

@@ -35,6 +35,15 @@
             android:background="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_room_db"
+            android:layout_marginTop="16dp"
+            android:text="ROOM DB"
+            android:textColor="@android:color/white"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

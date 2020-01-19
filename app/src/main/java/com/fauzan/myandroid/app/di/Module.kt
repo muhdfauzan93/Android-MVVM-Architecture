@@ -3,9 +3,13 @@ package com.fauzan.myandroid.app.di
 import android.app.Application
 import androidx.room.Room
 import com.fauzan.myandroid.BuildConfig
+import com.fauzan.myandroid.app.AppDatabase
 import com.fauzan.myandroid.model.api.ApiService
+import com.fauzan.myandroid.model.dao.PostDao
+import com.fauzan.myandroid.model.repository.PostRepository
 import com.fauzan.myandroid.model.repository.UserRepository
 import com.fauzan.myandroid.viewmodel.RestViewModel
+import com.fauzan.myandroid.viewmodel.RoomViewModel
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -21,6 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 val viewModelModule = module {
     viewModel { RestViewModel(get()) }
+    viewModel { RoomViewModel(get()) }
 }
 
 
@@ -69,39 +74,33 @@ val netModule = module {
     single { provideRetrofit(get(), get()) }
 }
 
-//val databaseModule = module {
-//
-//    fun provideDatabase(application: Application): AppDatabase {
-//        return Room.databaseBuilder(application, AppDatabase::class.java, "eds.database")
-//            .fallbackToDestructiveMigration()
-//            .allowMainThreadQueries()
-//            .build()
-//    }
-//
-//
-//    fun provideDao(database: AppDatabase): PersonDao {
-//        return database.personDao
-//    }
-//
-//    single { provideDatabase(androidApplication()) }
-//    single { provideDao(get()) }
-//}
+val databaseModule = module {
+
+    fun provideDatabase(application: Application): AppDatabase {
+        return Room.databaseBuilder(application, AppDatabase::class.java, "eds.database")
+            .fallbackToDestructiveMigration()
+            .allowMainThreadQueries()
+            .build()
+    }
+
+    fun provideDao(database: AppDatabase): PostDao {
+        return database.postDao
+    }
+
+    single { provideDatabase(androidApplication()) }
+    single { provideDao(get()) }
+}
 
 val repositoryModule = module {
     fun provideUserRepository(apiService: ApiService): UserRepository {
         return UserRepository(apiService)
     }
 
-//    fun provideRepoRepository(apiService: ApiService): ReposRepository {
-//        return ReposRepository(apiService)
-//    }
-//
-//    fun provideRoomRepository(personDao: PersonDao): RoomRepository {
-//        return RoomRepository(personDao)
-//    }
-
+    fun providePostRepository(apiService: ApiService, postDao: PostDao): PostRepository {
+        return PostRepository(apiService, postDao)
+    }
 
     single { provideUserRepository(get()) }
-//    single { provideRepoRepository(get()) }
-//    single { provideRoomRepository( get()) }
+    single { providePostRepository(get(), get()) }
+
 }

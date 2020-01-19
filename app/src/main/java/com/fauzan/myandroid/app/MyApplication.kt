@@ -2,10 +2,7 @@ package com.fauzan.myandroid.app
 
 import android.app.Application
 import com.fauzan.myandroid.BuildConfig
-import com.fauzan.myandroid.app.di.apiModule
-import com.fauzan.myandroid.app.di.netModule
-import com.fauzan.myandroid.app.di.repositoryModule
-import com.fauzan.myandroid.app.di.viewModelModule
+import com.fauzan.myandroid.app.di.*
 import com.fauzan.myandroid.app.timber.ReleaseTree
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -26,7 +23,7 @@ class MyApplication : Application(){
             androidContext(this@MyApplication)
             androidLogger(Level.DEBUG)
             // modules
-             modules(listOf(viewModelModule, apiModule, netModule, repositoryModule))
+             modules(listOf(viewModelModule, apiModule, netModule, repositoryModule, databaseModule))
         }
     }
 }
