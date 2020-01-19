@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.MaterialComponents.CardView"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:id="@+id/cv_custom_dialog"
+    app:cardBackgroundColor="@android:color/white" app:cardCornerRadius="4dp">
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:padding="24dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_icon"
+                android:layout_gravity="center"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@color/gray"
+                android:scaleType="centerCrop"
+                android:contentDescription="@null"/>
+
+            <TextView
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:gravity="center"
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/app_name"/>
+
+            <TextView
+                android:textSize="14sp"
+                android:gravity="center"
+                android:id="@+id/tv_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"/>
+        </LinearLayout>
+        <View
+            android:background="@color/gray"
+            android:layout_width="match_parent"
+            android:layout_height="1px" />
+
+        <TextView
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            android:id="@+id/tv_ok"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="OK"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
